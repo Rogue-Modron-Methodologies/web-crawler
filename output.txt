@@ -1,0 +1,634 @@
+1   <?xml version="1.0" encoding="utf-8"?>
+2   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+3       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+4       
+5   
+6   <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+7       <head>
+8           <title>The Queue Interface (The Java&trade; Tutorials &gt;        
+9               Collections &gt; Interfaces)
+10   </title>
+11   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+12        <meta name="description" content="This collections Java tutorial describes interfaces, implementations, and algorithms in the Java Collections framework" />
+13        <meta name="keywords" content="java programming, learn java, java sample code, java collections, set, list, queue, map, array, arraylist" />
+14           
+15   <style type="text/css">
+16       body {
+17           margin-left:10px;
+18           margin-right:10px;
+19           line-height: 1.5;
+20           FONT-FAMILY: Arial, Helvetica, sans-serif; 
+21           font-size: 0.8em;
+22       }
+23       
+24       a:link{text-decoration:none; color:#09569d;}
+25       a:visited{text-decoration:none; color: #3a87cf;}
+26       a:hover{text-decoration:underline; }
+27           
+28       code{
+29           font-family:Monaco,Courier,"Courier New";
+30       }
+31       
+32       .header-container {
+33           background-color: #fff;
+34           border-bottom: 1px solid #C1CFDA;
+35           -webkit-box-shadow: 0 2px 2px rgba(117, 163, 231, 0.1);
+36           box-shadow: 0 2px 2px rgba(117, 163, 231, 0.1);
+37       }
+38       
+39       .bookwrapper {
+40           width: auto;
+41           margin: auto;
+42       }
+43       
+44       .clearfix {
+45       }
+46       
+47       .clearfloat {
+48           clear: both;
+49           overflow: auto;
+50           height: 0px;
+51           font-size: 1px;
+52           line-height: 0px;
+53       }
+54       
+55       #brandProdName {
+56           width: auto;
+57           height: auto;
+58       }
+59       
+60       #logocover {
+61           display: block;
+62           background: transparent url(../../images/oracle-java-logo.png) 0px 0px no-repeat;
+63           height: 50px;
+64           width: 229px;
+65           float: left;
+66       }
+67       
+68       #productName {
+69           font-size: 16px;
+70           position: relative;
+71           top: 19px;
+72           padding-left: 3px;
+73           color: #457798;
+74           white-space: nowrap;
+75           width: 340px;
+76       }
+77   
+78   
+79       .FigureCaption   { 
+80           font-family: sans-serif; 
+81           text-align: center;
+82       }
+83       
+84       #TopBar_bl {        
+85           width: 100%;
+86           height: 60px;
+87       }
+88       #TopBar_br {
+89           width: 100%;
+90           height: 60px;
+91       }
+92       #TopBar_tl {
+93           margin-left: -110px;
+94           margin-right: -100px;       
+95   		align: left;
+96           height: 60px;
+97       }
+98       #TopBar_tr {
+99           width: 100%;
+100           height: 60px;
+101       }
+102       
+103       #TopBar {
+104           min-width:700px;
+105           padding:25px 100px 10px;
+106           margin-bottom:25px;
+107           clear:both;
+108           
+109           border-bottom:1px solid #d2dde5;
+110           border-radius: 3px;
+111       
+112           background:#efefef; /* Old browsers */
+113           /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+114           background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlMmVmZjkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+115           background: -moz-linear-gradient(top,  #ffffff 0%, #e2eff9 100%); /* FF3.6+ */
+116           background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e2eff9)); /* Chrome,Safari4+ */
+117           background: -webkit-linear-gradient(top,  #ffffff 0%,#e2eff9 100%); /* Chrome10+,Safari5.1+ */
+118           background: -o-linear-gradient(top,  #ffffff 0%,#e2eff9 100%); /* Opera 11.10+ */
+119           background: -ms-linear-gradient(top,  #ffffff 0%,#e2eff9 100%); /* IE10+ */
+120           background: linear-gradient(to bottom,  #ffffff 0%,#e2eff9 100%); /* W3C */
+121           filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e2eff9',GradientType=0 ); /* IE6-8 */
+122           
+123       }
+124       
+125       #TopBar_left {
+126           line-height: 14px;
+127           position: absolute;
+128           padding-top: 30px;
+129           padding-right: 30px;
+130           padding-left: 30px;
+131           text-align: left;
+132           font: 13px/20px Arial, Helvetica, sans-serif;
+133           font-weight: bold;
+134           font-size: 20px;
+135           color: #333;
+136       }
+137       
+138       #TopBar_right {
+139           line-height: 12px;
+140           float: right;
+141           padding-top: 10px;
+142           padding-right: 30px;
+143           text-align: left;
+144       }
+145       
+146   
+147       @media print {
+148           #BreadCrumbs, #Download {
+149               display: none;
+150           }
+151       }
+152       
+153        
+154       @media print {
+155           #TopBar_right {
+156               display: none;
+157           }
+158       }
+159       #TopBar_right a {
+160           font-size: 10px;
+161           margin: 3px;
+162           padding: 0;
+163       }
+164    
+165       #BreadCrumbs {
+166           padding: 15px 5px 0.5em 0;
+167           font-family: sans-serif; 
+168           float: right;
+169       }
+170       
+171       #BreadCrumbs a {
+172           color:#09569d;
+173       }
+174       
+175       #BreadCrumbs a:visited, #BreadCrumbs a:link {
+176           text-decoration: none;
+177       }
+178       
+179       #BreadCrumbs a:hover, #BreadCrumbs a:active {
+180           text-decoration: underline;
+181       }
+182       
+183       #PageTitle {
+184           margin: 0 5px 0.5em 0;
+185           color: #F90000;
+186       }
+187       
+188       #PageContent{
+189           margin: 0 5px 0 20px;
+190       }
+191       
+192       .LeftBar_shown {
+193           width: 13em;
+194           float: left;
+195       }
+196       
+197       @media print {
+198           .LeftBar_shown {
+199               display: none;
+200           }
+201       }
+202       
+203       .LeftBar_hidden {
+204           display: none;
+205       }
+206       
+207       #Footer {
+208           padding-top: 10px;
+209           padding-left: 10px;
+210           margin-right: 10px;       
+211       }
+212       
+213       .footertext {
+214           font-size: 10px;
+215           font-family: sans-serif; 
+216           margin-top: 1px;
+217       }
+218   
+219       .NavBit  {
+220           padding: 15px 5px 0.5em 0;
+221           font-family: sans-serif; 
+222       }
+223       
+224       @media print {
+225           .NavBit {
+226               display: none;
+227           }
+228       }
+229       
+230       #TagNotes {
+231           text-align: right;        
+232       }
+233       
+234       @media print {
+235           #TagNotes a:visited, #TagNotes a:link {
+236               color: #35556B;
+237               text-decoration: none;
+238           }
+239       }
+240       
+241       #Contents a, .NavBit a, #TagNotes a {
+242           color:#09569d;
+243       }
+244       
+245       #TagNotes a:visited, #TagNotes a:link,
+246       #Contents a:visited, #Contents a:link,
+247       .NavBit a:visited, .NavBit a:link {
+248           text-decoration: none;
+249       }
+250       
+251       #TagNotes a:hover, #TagNotes a:active,   
+252       #Contents a:hover, #Contents a:active,   
+253       .NavBit a:hover, .NavBit a:active {  
+254           text-decoration: underline;
+255       }
+256       
+257       #Contents {
+258           float: left;
+259           font-family: sans-serif; 
+260       }
+261       @media print {
+262           #Contents {
+263               display: none;
+264           }
+265       }
+266       @media screen {
+267           div.PrintHeaders {
+268               display: none;
+269           }
+270       }
+271       .linkLESSON, .nolinkLESSON {
+272           margin-left: 0.5em;
+273           text-indent: -0.5em;
+274       }
+275       .linkAHEAD, .nolinkAHEAD, .linkQUESTIONS, .nolinkQUESTIONS   {
+276           margin-left: 1.5em; 
+277           text-indent: -0.5em
+278       }
+279       .linkBHEAD, .nolinkBHEAD   {
+280           margin-left: 2.5em;
+281           text-indent: -0.5em
+282       }
+283       .linkCHEAD, .nolinkCHEAD   {
+284           margin-left: 3.5em;
+285           text-indent: -0.5em
+286       }
+287       .nolinkLESSON, .nolinkAHEAD, .nolinkBHEAD, .nolinkCHEAD,
+288       .nolinkQUESTIONS {
+289           font-weight: bold;
+290           color: #333;
+291   		
+292   		
+293       }
+294       .MainFlow_indented {
+295           margin-right: 10px;
+296           margin-left: 15em;
+297           margin-bottom: 2em;
+298   
+299       }
+300       .MainFlow_wide {
+301   	
+302           margin-right: 10px;
+303           margin-left: 10px;
+304           margin-bottom: 2em;
+305   
+306       }
+307       @media print {
+308           .MainFlow_indented, .MainFlow_wide {
+309               padding-top: 0;
+310               margin-top: 10px;
+311               margin-right: 10px;
+312               margin-left: 0;
+313           }
+314       }
+315       h1, h2, h3, h4, h5 {
+316           color: #333;
+317           
+318       }
+319   
+320       h1 {
+321           font-weight: bold;
+322           font-size: 20px;
+323       }
+324   
+325       h2 {
+326           font-weight: bold;
+327           font-size: 17px;
+328       }
+329   
+330       h3 {
+331           font-weight: bold;
+332           font-size: 14px;
+333       }
+334   
+335       h4 {
+336           font-size: 15px;
+337       }
+338   
+339       h5 {
+340           font-size: 12px;
+341       }
+342   
+343   
+344       #ToggleLeft {
+345           display: none;
+346       }
+347       
+348       .note {
+349           margin: 0 30px 0px 30px;
+350       }
+351       
+352       .codeblock {
+353           margin: 0 30px 0px 30px;
+354   		font-size:12px;
+355   		font-family:Monaco,Courier,"Courier New";
+356       }
+357       
+358       .tocli {
+359           list-style-type:none;
+360       }
+361   
+362       .betadraft {
+363           color: red;
+364       }
+365   </style>
+366   <script type="text/javascript">
+367   /* <![CDATA[ */
+368       function leftBar() {
+369           var nameq = 'tutorial_showLeftBar='
+370           var cookies = document.cookie.split(';');
+371           for (var i = 0; i < cookies.length; i++) {
+372               var cookieString = cookies[i];
+373               while (cookieString.charAt(0) == ' ') {
+374                   cookieString = cookieString.substring(1, cookieString.length);
+375               }
+376               if (cookieString.indexOf(nameq) == 0) {
+377                   cookieValue =  cookieString.substring(nameq.length,
+378                           cookieString.length);
+379                   return cookieValue == 'yes';
+380               }
+381           }
+382           return true;
+383       }
+384   
+385       function showLeft(b) {
+386           var contents = document.getElementById("LeftBar");
+387           var main = document.getElementById("MainFlow");
+388           var toggle = document.getElementById("ToggleLeft");
+389           if (b) {
+390               contents.className = "LeftBar_shown";
+391               main.className = "MainFlow_indented";
+392               toggle.innerHTML = "Hide TOC";
+393               document.cookie = 'tutorial_showLeftBar=yes; path=/';
+394           } else {
+395               contents.className = "LeftBar_hidden";
+396               main.className = "MainFlow_wide";
+397               toggle.innerHTML = "Show the TOC";
+398               document.cookie = 'tutorial_showLeftBar=no; path=/';
+399           }
+400       }
+401   
+402       function toggleLeft() {
+403           showLeft(document.getElementById("LeftBar").className ==
+404                   "LeftBar_hidden");
+405           document.getElementById("ToggleLeft").blur();
+406       }
+407   
+408       function load() {
+409           showLeft(leftBar());
+410           document.getElementById("ToggleLeft").style.display="inline";
+411       }
+412   
+413       function showCode(displayCodePage, codePath) {
+414           var codePathEls = codePath.split("/");
+415           var currDocPathEls = location.href.split("/");
+416           //alert ("codePathEls = " + codePathEls + "\n" + "currDocPathEls = " + currDocPathEls);
+417           currDocPathEls.pop(); // remove file name at the end
+418           while (codePathEls.length > 0) {
+419               if (codePathEls[0] == "..") {
+420                   codePathEls.shift();
+421                   currDocPathEls.pop();
+422               } else {
+423                   break;
+424               }
+425           }
+426           var fullCodePath = currDocPathEls.join("/") + "/" + codePathEls.join("/");
+427           //alert ("fullCodePath = " + fullCodePath );
+428           if (codePath.indexOf(".java") != -1 || codePath.indexOf(".jnlp") != -1) {
+429               window.location.href = displayCodePage + "?code=" + encodeURI(fullCodePath);
+430           } else {
+431               window.location.href = fullCodePath;
+432           }
+433       }
+434   /* ]]> */    
+435   </script>
+436   
+437   
+438       </head>
+439   <body onload="load()">
+440       <noscript>
+441           A browser with JavaScript enabled is required for this page to operate properly.
+442       </noscript>
+443           <!-- header -->
+444       <div class="header-container">
+445           <div class="bookwrapper  clearfix">       
+446               <div id="brandProdName">
+447                   <div id="logocover"></div>
+448                   <div id="productName" >Documentation</div>
+449               </div> 
+450               <br class="clearfloat" />
+451           </div>
+452       </div>
+453       
+454       <div id="TopBar">
+455        <div id="TopBar_tr"> <div id="TopBar_tl"> <div id="TopBar_br"> <div id="TopBar_bl"> 
+456                           <div id="TopBar_left">
+457                               The Java&trade; Tutorials
+458                           </div>
+459                           <div id="TopBar_right"> 
+460                               <a target="_blank"
+461   				href="http://www.oracle.com/technetwork/java/javase/downloads/java-se-7-tutorial-2012-02-28-1536013.html">Download Ebooks</a><br />
+462                               <a target="_blank"
+463                                   href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Download JDK</a>
+464                               <br />
+465                               <a href="../../search.html" target="_blank">Search Java Tutorials</a>
+466                               <br />           
+467                               <a href="javascript:toggleLeft()"
+468                                   id="ToggleLeft">Hide TOC</a>
+469                           </div>
+470                       </div> </div> </div> </div> </div>
+471   
+472   
+473       <div id="LeftBar" class="LeftBar_shown">
+474           <div id="Contents">
+475               <div class="linkLESSON"><a href="index.html">Interfaces</a></div>
+476   <div class="linkAHEAD"><a href="collection.html">The Collection Interface</a></div>
+477   <div class="linkAHEAD"><a href="set.html">The Set Interface</a></div>
+478   <div class="linkAHEAD"><a href="list.html">The List Interface</a></div>
+479   <div class="nolinkAHEAD">The Queue Interface</div>
+480   <div class="linkAHEAD"><a href="deque.html">The Deque Interface</a></div>
+481   <div class="linkAHEAD"><a href="map.html">The Map Interface</a></div>
+482   <div class="linkAHEAD"><a href="order.html">Object Ordering</a></div>
+483   <div class="linkAHEAD"><a href="sorted-set.html">The SortedSet Interface</a></div>
+484   <div class="linkAHEAD"><a href="sorted-map.html">The SortedMap Interface</a></div>
+485   <div class="linkAHEAD"><a href="summary.html">Summary of Interfaces</a></div>
+486   <div class="linkQUESTIONS"><a href="QandE/questions.html">Questions and Exercises</a></div>
+487   </div>
+488       </div>
+489       <div id="MainFlow" class="MainFlow_indented">
+490       <div class="PrintHeaders">
+491           <b>Trail:</b> Collections
+492           <br /><b>Lesson:</b> Interfaces
+493       </div>
+494               <div id="BreadCrumbs">
+495                   <a href="../../index.html" target="_top">Home Page</a>
+496                   &gt;
+497                   <a href="../index.html" target="_top">Collections</a>
+498                   &gt;
+499                   <a href="index.html" target="_top">Interfaces</a>
+500               </div>
+501               <div class="NavBit">
+502                   <a target="_top" href="list.html">&laquo;&nbsp;Previous</a>&nbsp;&bull;&nbsp;<a target="_top" href="../TOC.html">Trail</a>&nbsp;&bull;&nbsp;<a target="_top" href="deque.html">Next&nbsp;&raquo;</a>
+503               </div>
+504               <div id="PageTitle"><h1>The Queue Interface</h1></div>
+505               <div id="PageContent">
+506   
+507   <p>A 
+508   <a class="APILink" target="_blank" href="https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html"><code>Queue</code></a> is a collection for holding elements prior to processing. Besides basic <code>Collection</code> operations, queues provide additional insertion, removal, and inspection operations. The <code>Queue</code> interface follows.</p>
+509   <div class="codeblock"><pre>
+510   public interface Queue&lt;E&gt; extends Collection&lt;E&gt; {
+511       E element();
+512       boolean offer(E e);
+513       E peek();
+514       E poll();
+515       E remove();
+516   }
+517   </pre></div>
+518   <p>Each <code>Queue</code> method exists in two forms: (1) one throws an exception if the operation fails, and (2) the other returns a special value if the operation fails (either <code>null</code> or <code>false</code>, depending on the operation). The regular structure of the interface is illustrated in 
+519   <span id="table:queue-structure">the following table</span>.</p>
+520   <table summary="queue-structure" border="1">
+521   <caption id="queue-structure"><strong>Queue Interface Structure</strong></caption>
+522   <tr>
+523   <th id="h1">Type of Operation</th>
+524   <th id="h2">Throws exception</th>
+525   <th id="h3">Returns special value</th>
+526   </tr>
+527   <tr>
+528   <td headers="h1">Insert</td>
+529   <td headers="h2"><code>add(e)</code></td>
+530   <td headers="h3"><code>offer(e)</code></td>
+531   </tr>
+532   <tr>
+533   <td headers="h1">Remove</td>
+534   <td headers="h2"><code>remove()</code></td>
+535   <td headers="h3"><code>poll()</code></td>
+536   </tr>
+537   <tr>
+538   <td headers="h1">Examine</td>
+539   <td headers="h2"><code>element()</code></td>
+540   <td headers="h3"><code>peek()</code></td>
+541   </tr>
+542   </table>
+543   <br />
+544   <p>Queues typically, but not necessarily, order elements in a FIFO (first-in-first-out) manner. Among the exceptions are priority queues, which order elements according to their values &#151; see the 
+545   <a class="TutorialLink" target="_top" href="order.html">Object Ordering</a> section for details). Whatever ordering is used, the head of the queue is the element that would be removed by a call to <code>remove</code> or <code>poll</code>. In a FIFO queue, all new elements are inserted at the tail of the queue. Other kinds of queues may use different placement rules. Every <code>Queue</code> implementation must specify its ordering properties.</p>
+546   <p>It is possible for a <code>Queue</code> implementation to restrict the number of elements that it holds; such queues are known as <i>bounded</i>. Some <code>Queue</code> implementations in <code>java.util.concurrent</code> are bounded, but the implementations in <code>java.util</code> are not.</p>
+547   <p>The <code>add</code> method, which <code>Queue</code> inherits from <code>Collection</code>, inserts an element unless it would violate the queue&#39;s capacity restrictions, in which case it throws <code>IllegalStateException</code>. The <code>offer</code> method, which is intended solely for use on bounded queues, differs from <code>add</code> only in that it indicates failure to insert an element by returning <code>false</code>.</p>
+548   <p>The <code>remove</code> and <code>poll</code> methods both remove and return the head of the queue. Exactly which element gets removed is a function of the queue&#39;s ordering policy. The <code>remove</code> and <code>poll</code> methods differ in their behavior only when the queue is empty. Under these circumstances, <code>remove</code> throws <code>NoSuchElementException</code>, while <code>poll</code> returns <code>null</code>.</p>
+549   <p>The <code>element</code> and <code>peek</code> methods return, but do not remove, the head of the queue. They differ from one another in precisely the same fashion as <code>remove</code> and <code>poll</code>: If the queue is empty, <code>element</code> throws <code>NoSuchElementException</code>, while <code>peek</code> returns <code>null</code>.</p>
+550   <p><code>Queue</code> implementations generally do not allow insertion of <code>null</code> elements. The <code>LinkedList</code> implementation, which was retrofitted to implement <code>Queue</code>, is an exception. For historical reasons, it permits <code>null</code> elements, but you should refrain from taking advantage of this, because <code>null</code> is used as a special return value by the <code>poll</code> and <code>peek</code> methods.</p>
+551   <p>Queue implementations generally do not define element-based versions of the <code>equals</code> and <code>hashCode</code> methods but instead inherit the identity-based versions from <code>Object</code>.</p>
+552   <p>The <code>Queue</code> interface does not define the blocking queue methods, which are common in concurrent programming. These methods, which wait for elements to appear or for space to become available, are defined in the interface 
+553   <a class="APILink" target="_blank" href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/BlockingQueue.html"><code>java.util.concurrent.BlockingQueue</code></a>, which extends <code>Queue</code>.</p>
+554   <p>In the following example program, a queue is used to implement a countdown timer. The queue is preloaded with all the integer values from a number specified on the command line to zero, in descending order. Then, the values are removed from the queue and printed at one-second intervals. The program is artificial in that it would be more natural to do the same thing without using a queue, but it illustrates the use of a queue to store elements prior to subsequent processing.</p>
+555   <div class="codeblock"><pre>
+556   import java.util.*;
+557   
+558   public class Countdown {
+559       public static void main(String[] args) throws InterruptedException {
+560           int time = Integer.parseInt(args[0]);
+561           Queue&lt;Integer&gt; queue = new LinkedList&lt;Integer&gt;();
+562   
+563           for (int i = time; i &gt;= 0; i--)
+564               queue.add(i);
+565   
+566           while (!queue.isEmpty()) {
+567               System.out.println(queue.remove());
+568               Thread.sleep(1000);
+569           }
+570       }
+571   }
+572   </pre></div>
+573   <p>In the following example, a priority queue is used to sort a collection of elements. Again this program is artificial in that there is no reason to use it in favor of the <code>sort</code> method provided in <code>Collections</code>, but it illustrates the behavior of priority queues.</p>
+574   <div class="codeblock"><pre>
+575   static &lt;E&gt; List&lt;E&gt; heapSort(Collection&lt;E&gt; c) {
+576       Queue&lt;E&gt; queue = new PriorityQueue&lt;E&gt;(c);
+577       List&lt;E&gt; result = new ArrayList&lt;E&gt;();
+578   
+579       while (!queue.isEmpty())
+580           result.add(queue.remove());
+581   
+582       return result;
+583   }
+584   </pre></div>
+585   
+586   
+587           </div>
+588           <div class="NavBit">
+589               <a target="_top" href="list.html">&laquo; Previous</a>
+590               &bull;
+591               <a target="_top" href="../TOC.html">Trail</a>
+592               &bull;
+593               <a target="_top" href="deque.html">Next &raquo;</a>
+594           </div>
+595       </div>
+596       
+597   <hr class="clearfloat"/>
+598   
+599   <div id="Footer">
+600   <table width="100%" border="0" cellspacing="0" cellpadding="5" summary="">
+601   <tr>
+602       <td>
+603            <p class="footertext"><a name="license_info">Your use of this</a> page and all the material on pages under &quot;The Java Tutorials&quot; banner 
+604            is subject to these <a href="../../information/cpyr.html">legal notices</a>.
+605            </p>
+606            <p class="footertext">Copyright &copy; 1995, 2015 Oracle and/or its affiliates. All rights reserved.</p>
+607       </td>
+608       
+609       <td align="right">
+610           <p class="footertext">Problems with the examples? Try <a target="_blank"
+611           href="../../information/run-examples.html">Compiling and Running
+612           the Examples: FAQs</a>.
+613           </p>
+614           <p class="footertext">
+615           Complaints? Compliments? Suggestions? <a target="_blank"
+616               href="https://docs.oracle.com/javase/feedback.html">Give
+617           us your feedback</a>.       
+618           </p>
+619       </td>
+620       
+621   </tr>
+622   </table>
+623     
+624   </div>
+625       
+626       <div class="PrintHeaders">
+627           <b>Previous page:</b> The List Interface
+628           <br /><b>Next page:</b> The Deque Interface
+629       </div>
+630   <!-- Start SiteCatalyst code -->
+631   <script type="application/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+632   <!-- End SiteCatalyst code --> 
+633   </body>
+634   </html> 
